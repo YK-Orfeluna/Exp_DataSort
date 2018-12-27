@@ -6,7 +6,7 @@
 - numpy
 - pandas
 
-autoplot.pyではmatplotlibも必要
+`autoplot.py`ではmatplotlibも必要
 
 ## sort.pyについて
 
@@ -42,7 +42,7 @@ autoplot.pyではmatplotlibも必要
 		- 自分でパスを入力した場合は，ラジオボタンを選択して切り替えること
 3. 誤差棒をSEM（標準誤差）/SD（標本標準偏差）にするのか選択する（defaultはSEM）
 4. ファイルにヘッダーとインデックスが含まれない場合は，**Header**と**Index**のチェックを外す
-	- sort.pyでデータを作成した場合は，両方にチェックを入れておく（default）
+	- `sort.py`でデータを作成した場合は，両方にチェックを入れておく（default）
 5. （任意）**N of Factor A**から**N of Factor D**までに適切な要因数を入れる
 	- エラーがあった場合，条件名はプロットされない
 6. （任意）**Maximum value of response**と**Minimum value of response**を指定する
@@ -56,7 +56,7 @@ autoplot.pyではmatplotlibも必要
 ![autplot.pyの画面](autoplot_window.png)
 
 ### 注意点
-- sort.pyで作成したデータを対象として，***平均値の比較のグラフ***を描画することを目的としている
+- `sort.py`で作成したデータを対象として，**平均値の比較のグラフ**を描画することを目的としている
 	- 選択肢問題については対応不可
 	- 自作のデータの場合，1列目はヘッダー，1行目はインデックスとする
 		- つまり，2列目2行目からデータが始まる
