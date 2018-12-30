@@ -110,6 +110,10 @@ def __main() :
 		messagebox.showwarning("Error", "Your choosen directory does not have any csv-files.")
 
 	return 1
+
+def quit() :
+	root.destroy()
+	exit("done")
 		
 
 if __name__ == "__main__" :
@@ -141,11 +145,11 @@ if __name__ == "__main__" :
 		button3.place(relx=0.5, y=100, anchor=tkinter.CENTER)
 
 
-		button0 = Button(root, text="Exit", command=exit)
+		button0 = Button(root, text="Exit", command=quit)
 		button0.place(relx=0.5, y=150, anchor=tkinter.CENTER)
 
 		root.mainloop()
 
 		exit("done")
 	except KeyboardInterrupt :
-		exit("done")
+		quit()
