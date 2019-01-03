@@ -111,7 +111,7 @@ def __main() :
 
 	return 1
 
-def quit() :
+def _quit() :
 	root.destroy()
 	exit("done")
 		
@@ -145,7 +145,7 @@ if __name__ == "__main__" :
 		button3.place(relx=0.5, y=100, anchor=tkinter.CENTER)
 
 
-		button0 = Button(root, text="Exit", command=quit)
+		button0 = Button(root, text="Exit", command=_quit)
 		button0.place(relx=0.5, y=150, anchor=tkinter.CENTER)
 
 		root.mainloop()

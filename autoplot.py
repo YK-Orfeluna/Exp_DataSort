@@ -15,6 +15,13 @@ import matplotlib
 matplotlib.use("TkAgg")
 from matplotlib import pyplot as plt
 
+from platform import system
+if system()=="Windows" :
+	fType = [("CSV/TSV", "*.csv;*.tsv")]
+	
+else :
+	fType = [("CSV", "*.csv"), ("TSV", "*.tsv")]
+
 def factor_processing(s) :
 	try :
 		if int(s)==0 :
@@ -103,9 +110,9 @@ def plot(csvname, save=False) :
 		index = None
 
 	if splitext(csvname)[1]==".tsv" :
-		delimiter="\t"
+		delimiter = "\t"
 	elif splitext(csvname)[1]==".csv" :
-		delimiter=","
+		delimiter = ","
 
 	try :
 		df = pd.read_csv(csvname, header=header, index_col=index, delimiter=delimiter)
@@ -117,7 +124,7 @@ def plot(csvname, save=False) :
 
 	SDs = np.std(data, axis=0, ddof=1)
 	if ERR==0 :
-		err = SDs / np.sqrt(data.shape[0])
+		err = SDs / np.sqrt(data.shape[0])		# SEM: standard error of the mean
 	elif ERR==1 :
 		err = SDs
 	#print(means)
@@ -137,7 +144,7 @@ def plot(csvname, save=False) :
 		rotation = int(entryXR.get())
 	except :
 		messagebox.showwarning("WARNING", "\"X-ticks\' rotation\" is only numeric.")
-		return 0
+		rotation = 0
 
 	if Nfactor!=0 :
 		plt.xticks(X, conditions, rotation=rotation)
@@ -146,7 +153,7 @@ def plot(csvname, save=False) :
 	if ylabel!="" :
 		plt.ylabel(ylabel)
 
-	if min_ is None and max_ is None :
+	if min_ is None or max_ is None :
 		pass
 	elif type(min_) == float :
 		plt.ylim(min_, max_)
@@ -157,15 +164,13 @@ def plot(csvname, save=False) :
 	if flagT.get() :
 		plt.title(basename(splitext(csvname)[0]))
 
+	outname = splitext(csvname)[0]+".png"
 	if save :
-		outname = splitext(csvname)[0]+".png"
 		plt.savefig(outname, dpi=300)
-		plt.close(fig)
-		return outname
 	else :
 		plt.show()
-		plt.close(fig)
-		return 1
+	plt.close(fig)
+	return outname
 
 def __get_dir_name() :
 	dir_name = filedialog.askdirectory(title="Choose target directory", initialdir=".")
@@ -176,7 +181,7 @@ def __get_dir_name() :
 	return 1
 
 def __get_file_name() :
-	ftype = (["CSV", "*.csv"], ["TSV", "*.tsv"])
+	#ftype = (["CSV", "*.csv"], ["TSV", "*.tsv"])
 	dir_name = filedialog.askopenfilename(title="Choose target directory", initialdir=".", filetypes=ftype)
 	if dir_name!="" :
 		entry2.delete(0, END)
