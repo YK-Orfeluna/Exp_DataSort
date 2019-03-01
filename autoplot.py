@@ -182,7 +182,7 @@ def __get_dir_name() :
 
 def __get_file_name() :
 	#ftype = (["CSV", "*.csv"], ["TSV", "*.tsv"])
-	dir_name = filedialog.askopenfilename(title="Choose target directory", initialdir=".", filetypes=ftype)
+	dir_name = filedialog.askopenfilename(title="Choose target directory", initialdir=".", filetypes=fType)
 	if dir_name!="" :
 		entry2.delete(0, END)
 		entry2.insert(END, dir_name)
